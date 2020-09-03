@@ -3,7 +3,7 @@
 ## Task 1. Deploy a GKE cluster
 	
 - Configure the cluster name and zone
-	export my_cluster=cluster-1
+	`export my_cluster=cluster-1`
 	export my_zone=us-central1-c
 
 	-Deploy cluster
