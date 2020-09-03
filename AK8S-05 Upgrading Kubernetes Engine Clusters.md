@@ -3,8 +3,8 @@
 ## Task 1. Deploy a GKE cluster
 	
 - Configure the cluster name and zone
-	`export my_cluster=cluster-1`
-	export my_zone=us-central1-c
+	- `export my_cluster=cluster-1`
+	- `export my_zone=us-central1-c`
 
 	-Deploy cluster
 	gcloud container clusters create $my_cluster --zone $my_zone --enable-ip-alias --num-nodes 3 --cluster-version 1.14.10-gke.27 
