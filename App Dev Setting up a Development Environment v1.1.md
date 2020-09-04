@@ -6,9 +6,9 @@
 	- `export vm_region=us-central1`
 	- `export vm_zone=us-central1-a`
 - Create a VM with full access scope 
-	- `gcloud compute instances create $vm_name --region $vm_region --zone $vm_zone --scopes=['bigquery', 'cloud-platform', 'cloud-source-repos', 'cloud-source-repos-ro', 'compute-ro', 'compute-rw', 'datastore', 'default', 'gke-default', 'logging-write', 'monitoring', 'moitoring-read', 'monitoring-write', 'pubsub', 'service-control', 'service-management', 'sql-admin', 'storage-full', 'storage-ro', 'storage-rw', 'taskqueue', 'trace', 'userinfo-email'] --tags http`
+	- `gcloud beta compute instances create $vm_name --region $vm_region --zone $vm_zone --scopes=https://www.googleapis.com/auth/cloud-platform --tags http-server`
 - Configure firewall to grant VM access
-	- `gcloud compute firewall-rules create allow-http-ingress --zone $vm_zone --region $vm_region --allow TCP:80 --target-tags http`
+	- `gcloud compute firewall-rules create allow-http-ingress --zone $vm_zone --region $vm_region --allow tcp:80 --direction INGRESS --source-ranges 0.0.0.0/0 --target-tags=http-server`
 - SSH into VM
 	- `gcloud compute ssh $vm_name --zone $vm_zone `
 
