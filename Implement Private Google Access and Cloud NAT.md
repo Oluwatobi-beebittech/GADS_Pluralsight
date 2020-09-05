@@ -50,3 +50,56 @@
 	- `gsutil cp gs://[my_bucket]/*.svg .`
 
 ## Task 3. Configure a Cloud NAT gateway
+
+- Update cloud shell packages
+	- `sudo apt-get update`
+- SSH into `vm_internal` using cloud IAP
+	- `gcloud compute ssh vm-internal --zone us-central1-c --tunnel-through-iap`
+- Resynchronize `vm-internal`
+	- `sudo apt-get update`
+- Terminate request retry
+	- `Ctrl+C`
+
+### Configure a Cloud NAT gateway
+
+- Create cloud router
+	- `gcloud compute routers create nat-router --network privatenet --region us-central1`
+- Configure NAT gateway
+	- `gcloud compute routers nats create nat-config --router nat-router --region us-central1`
+
+### Verify the Cloud NAT gateway
+
+- SSH into `vm_internal` using cloud IAP
+	- `gcloud compute ssh vm-internal --zone us-central1-c --tunnel-through-iap`
+- Resynchronize `vm-internal`
+	- `sudo apt-get update`
+- Return to cloud shell
+	- `exit`
+
+## Task 4. Configure and view logs with Cloud NAT Logging
+
+### Enable logging
+
+- Enable logging for `nat-config`
+	- `gcloud computer routers nats update nat-config --enable-logging --log-filter ALL --region us-central1`
+
+### NAT logging in Cloud Operations
+
+- Expose details of `nat-config`
+	- `gcloud compute routers nats describe nat-config --region us-central1` 
+- View logs
+	- `gcloud logging logs list`
+
+### Generating logs
+
+- SSH into `vm_internal` using cloud IAP
+	- `gcloud compute ssh vm-internal --zone us-central1-c --tunnel-through-iap`
+- Resynchronize `vm-internal`
+	- `sudo apt-get update`
+- Return to cloud shell
+	- `exit`
+
+### Viewing logs
+
+- View logs
+	- `gcloud logging logs list`
