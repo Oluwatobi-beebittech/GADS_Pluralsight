@@ -1,4 +1,4 @@
-# GADS_Pluralsight :code:
+# :cloud: GADS_Pluralsight
 This repository contains the screeenshots of completed GCP Qwiklabs and translated actions to GCP executable commands.
 
 ## Google Cloud Platform QwikLabs
